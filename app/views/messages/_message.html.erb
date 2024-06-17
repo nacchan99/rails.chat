@@ -1,0 +1,42 @@
+<% if message.bot? %>
+  <div class="my-2">
+    <div class="flex items-end">
+        <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+          <div><span class="px-4 py-2 rounded-lg inline-block text-base rounded-bl-none bg-gray-300 text-gray-600">
+            <% if local_assigns[:loading] %>
+              <div class="is-typing">
+                  <div class="jump1"></div>
+                  <div class="jump2"></div>
+                  <div class="jump3"></div>
+              </div>
+              <div class="">
+                <span class="message"><%= message.body %></span>
+              </div>
+            <% else %>
+              <%= message.body %>
+            <% end %>
+          </span></div>
+        </div>
+        <img src="<%= asset_path('bot.png') %>" alt="My profile" class="w-6 h-6 rounded-full order-1">
+    </div>
+  </div>
+<% else %>
+  <div class="my-2">
+    <div class="flex items-end justify-end">
+        <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+          <div><span class="px-4 py-2 rounded-lg inline-block text-base rounded-br-none bg-green-300 text-black"><%= message.body %></span></div>
+        </div>
+        <img src="https://ca.slack-edge.com/TPV86NYG5-UPV7XS3H6-4a6a40df05d1-512" alt="My profile" class="w-6 h-6 rounded-full order-2">
+    </div>
+  </div>
+<% end %>
+
+<script>
+  // 要素を選択
+  var element = document.getElementById('messages');
+  var message_body = document.getElementById('message_body')
+  message_body.value = '';
+
+  // 要素の最下部にスクロール
+  element.scrollTop = element.scrollHeight;
+</script>
